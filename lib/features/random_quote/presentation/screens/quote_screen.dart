@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quotes/config/routes/app_routes.dart';
 import 'package:quotes/core/utils/assets_manager.dart';
+import 'package:quotes/core/utils/constants.dart';
 import 'package:quotes/features/favourite_quote/presentation/screens/favourite_quote_screen.dart';
 
 class QuoteScreen extends StatefulWidget {
@@ -38,6 +39,25 @@ class _QuoteScreenState extends State<QuoteScreen> {
                   onPressed: () =>
                       Navigator.pushNamed(context, Routes.favouriteQuoteRoute),
                   child: Text("Generated Routing"),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () => Constants.showErrorDialog(
+                    context: context,
+                    message: "Error Happened",
+                  ),
+                  child: Text("Show Error Dialog"),
+                ),
+                ElevatedButton(
+                  onPressed: () => Constants.showToast(
+                    context: context,
+                    message: "Toast Message",
+                    color: Colors.red,
+                  ),
+                  child: Text("Show Toast"),
                 ),
               ],
             ),

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quotes/config/routes/app_routes.dart';
-import 'package:quotes/core/utils/assets_manager.dart';
-import 'package:quotes/core/utils/constants.dart';
-import 'package:quotes/core/utils/media_query_values.dart';
-import 'package:quotes/features/favourite_quote/presentation/screens/favourite_quote_screen.dart';
+import 'package:quotes/core/utils/app_colors.dart';
+import 'package:quotes/core/utils/app_strings.dart';
+import 'package:quotes/features/random_quote/presentation/widgets/quote_content.dart';
 
 class QuoteScreen extends StatefulWidget {
   const QuoteScreen({super.key});
@@ -13,58 +11,29 @@ class QuoteScreen extends StatefulWidget {
 }
 
 class _QuoteScreenState extends State<QuoteScreen> {
+  Widget _buildBodyContent() {
+    return Column(
+      children: [
+        QuoteContent(),
+        Container(
+          margin: const EdgeInsets.symmetric(vertical: 15),
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: AppColors.primary,
+          ),
+          child: const Icon(Icons.refresh, color: Colors.white, size: 30),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(title: const Text(AppStrings.appName));
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            Image.asset(ImgAssets.quote, width: context.width,),
-            Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const FavouriteQuoteScreen(),
-                    ),
-                  ),
-                  child: Text("Anonymous Routing"),
-                ),
-                ElevatedButton(
-                  onPressed: () =>
-                      Navigator.pushNamed(context, Routes.favouriteQuoteRoute),
-                  child: Text("Named Routing"),
-                ),
-                ElevatedButton(
-                  onPressed: () =>
-                      Navigator.pushNamed(context, Routes.favouriteQuoteRoute),
-                  child: Text("Generated Routing"),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () => Constants.showErrorDialog(
-                    context: context,
-                    message: "Error Happened",
-                  ),
-                  child: Text("Show Error Dialog"),
-                ),
-                ElevatedButton(
-                  onPressed: () => Constants.showToast(
-                    context: context,
-                    message: "Toast Message",
-                    color: Colors.red,
-                  ),
-                  child: Text("Show Toast"),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+      appBar: appBar,
+      body: Center(child: _buildBodyContent()),
     );
   }
 }

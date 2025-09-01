@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quotes/config/routes/app_routes.dart';
 import 'package:quotes/core/utils/assets_manager.dart';
 import 'package:quotes/core/utils/constants.dart';
+import 'package:quotes/core/utils/media_query_values.dart';
 import 'package:quotes/features/favourite_quote/presentation/screens/favourite_quote_screen.dart';
 
 class QuoteScreen extends StatefulWidget {
@@ -18,7 +19,7 @@ class _QuoteScreenState extends State<QuoteScreen> {
       body: Center(
         child: Column(
           children: [
-            Image.asset(ImgAssets.quote),
+            Image.asset(ImgAssets.quote, width: context.width,),
             Row(
               children: [
                 ElevatedButton(

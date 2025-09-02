@@ -13,7 +13,7 @@ QuoteModel quoteModelFromJson(String str) => QuoteModel.fromJson(json.decode(str
         author: json["author"],
     );
 
-    Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson(QuoteModel quote) => {
         "id": id,
         "quote": content,
         "author": author,

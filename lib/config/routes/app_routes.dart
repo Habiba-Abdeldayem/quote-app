@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quotes/core/utils/app_strings.dart';
-import 'package:quotes/features/favourite_quote/presentation/screens/favourite_quote_screen.dart';
+import 'package:quotes/playground/favourite_quote/presentation/screens/favourite_quote_screen.dart';
 import 'package:quotes/features/random_quote/presentation/screens/quote_screen.dart';
 
 class Routes {

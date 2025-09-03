@@ -30,7 +30,7 @@ class Constants {
         ],
       ),
     );
-    ;
+
   }
 
   static void showToast({

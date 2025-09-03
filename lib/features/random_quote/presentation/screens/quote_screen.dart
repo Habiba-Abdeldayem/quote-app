@@ -5,6 +5,7 @@ import 'package:quotes/core/utils/app_colors.dart';
 import 'package:quotes/core/utils/app_strings.dart';
 import 'package:quotes/features/random_quote/presentation/cubit/random_quote_cubit.dart';
 import 'package:quotes/features/random_quote/presentation/widgets/quote_content.dart';
+import 'package:quotes/core/widgets/error_widget.dart' as error_widget;
 
 class QuoteScreen extends StatefulWidget {
   const QuoteScreen({super.key});
@@ -14,14 +15,14 @@ class QuoteScreen extends StatefulWidget {
 }
 
 class _QuoteScreenState extends State<QuoteScreen> {
-
   _getRandomQuote() => context.read<RandomQuoteCubit>().getRandomQuote();
 
-  @override
-  void initState() {
-    super.initState();
-    _getRandomQuote();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _getRandomQuote();
+  // }
+
   Widget _buildBodyContent() {
     return BlocBuilder<RandomQuoteCubit, RandomQuoteState>(
       builder: (context, state) {
@@ -30,7 +31,7 @@ class _QuoteScreenState extends State<QuoteScreen> {
             child: SpinKitFadingCircle(color: AppColors.primary, size: 50.0),
           );
         } else if (state is RandomQuoteError) {
-          return Center(child: Text("error"));
+          return Center(child: const error_widget.ErrorWidget());
         } else if (state is RandomQuoteLoaded) {
           return Column(
             children: [
@@ -44,13 +45,17 @@ class _QuoteScreenState extends State<QuoteScreen> {
                     shape: BoxShape.circle,
                     color: AppColors.primary,
                   ),
-                  child: const Icon(Icons.refresh, color: Colors.white, size: 30),
+                  child: const Icon(
+                    Icons.refresh,
+                    color: Colors.white,
+                    size: 30,
+                  ),
                 ),
               ),
             ],
           );
-        } else{
-           return Center(
+        } else {
+          return Center(
             child: SpinKitFadingCircle(color: AppColors.primary, size: 50.0),
           );
         }
@@ -66,7 +71,6 @@ class _QuoteScreenState extends State<QuoteScreen> {
       child: Scaffold(
         appBar: appBar,
         body: Center(child: _buildBodyContent()),
-        
       ),
     );
   }

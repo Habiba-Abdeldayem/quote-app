@@ -3,7 +3,7 @@ import 'package:quotes/core/utils/assets_manager.dart';
 import 'package:quotes/core/utils/constants.dart';
 import 'package:quotes/core/utils/media_query_values.dart';
 import 'package:quotes/config/routes/app_routes.dart';
-import 'package:quotes/features/favourite_quote/presentation/screens/favourite_quote_screen.dart';
+import 'package:quotes/playground/favourite_quote/presentation/screens/favourite_quote_screen.dart';
 
 class PlaygroundScreen extends StatelessWidget {
   const PlaygroundScreen({super.key});

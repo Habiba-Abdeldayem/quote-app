@@ -1,10 +1,13 @@
 part of 'locale_cubit.dart';
 
 sealed class LocaleState extends Equatable {
-  const LocaleState();
+  final Locale locale;
+  const LocaleState(this.locale);
 
   @override
   List<Object> get props => [];
 }
 
-final class LocaleInitial extends LocaleState {}
+class ChangeLocaleState extends LocaleState {
+  const ChangeLocaleState(super.selectedLocale);
+}

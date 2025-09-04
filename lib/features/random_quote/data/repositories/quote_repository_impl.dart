@@ -7,17 +7,21 @@ import 'package:quotes/features/random_quote/data/datasources/random_quote_remot
 import 'package:quotes/features/random_quote/domain/entities/quote.dart';
 import 'package:quotes/features/random_quote/domain/repositories/quote_repository.dart';
 
-class QuoteRepositoryImpl implements QuoteRepository{
+class QuoteRepositoryImpl implements QuoteRepository {
   final NetworkInfo networkInfo;
   final RandomQuoteRemoteDataSource remoteDataSource;
   final RandomQuoteLocalDataSource localDataSource;
 
-  QuoteRepositoryImpl({required this.networkInfo, required this.remoteDataSource, required this.localDataSource});
-  
+  QuoteRepositoryImpl({
+    required this.networkInfo,
+    required this.remoteDataSource,
+    required this.localDataSource,
+  });
+
   @override
-  Future<Either<Failure, Quote>> getRandomQuote() async{
-    if(await networkInfo.isConnected){
-      try{
+  Future<Either<Failure, Quote>> getRandomQuote() async {
+    if (await networkInfo.isConnected) {
+      try {
         final remoteRandomQuote = await remoteDataSource.getRandomQuote();
         localDataSource.cacheQuote(remoteRandomQuote);
         return Right(remoteRandomQuote);
@@ -25,15 +29,13 @@ class QuoteRepositoryImpl implements QuoteRepository{
         return Left(ServerFailure());
       }
     } else {
-try{
+      try {
         final cacheRandomQuote = await localDataSource.getLastRandomQuote();
         localDataSource.cacheQuote(cacheRandomQuote);
         return Right(cacheRandomQuote);
       } on CacheException {
         return Left(CacheFailure());
       }
-    }  
+    }
   }
-
-
 }

@@ -31,7 +31,9 @@ class _QuoteScreenState extends State<QuoteScreen> {
             child: SpinKitFadingCircle(color: AppColors.primary, size: 50.0),
           );
         } else if (state is RandomQuoteError) {
-          return Center(child: const error_widget.ErrorWidget());
+          return Center(
+            child: error_widget.ErrorWidget(onPress: () => _getRandomQuote()),
+          );
         } else if (state is RandomQuoteLoaded) {
           return Column(
             children: [

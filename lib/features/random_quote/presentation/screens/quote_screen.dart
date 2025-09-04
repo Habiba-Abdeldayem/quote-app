@@ -17,11 +17,11 @@ class QuoteScreen extends StatefulWidget {
 class _QuoteScreenState extends State<QuoteScreen> {
   _getRandomQuote() => context.read<RandomQuoteCubit>().getRandomQuote();
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _getRandomQuote();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    _getRandomQuote();
+  }
 
   Widget _buildBodyContent() {
     return BlocBuilder<RandomQuoteCubit, RandomQuoteState>(

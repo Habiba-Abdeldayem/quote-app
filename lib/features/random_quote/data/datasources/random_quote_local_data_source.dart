@@ -34,7 +34,7 @@ class RandomQuoteLocalDataSourceImpl implements RandomQuoteLocalDataSource {
   Future<void> cacheQuote(QuoteModel quote) {
     return sharedPreferences.setString(
       AppStrings.cachedRandomQuote,
-      json.encode(quote)
+      json.encode(quote.toJson(quote))
     );
   }
 }

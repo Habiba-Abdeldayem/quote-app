@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class LangLocalDataSource {
   Future<bool> changeLang({required String langCode});
-  Future<String?> getSavedLang();
+  Future<String> getSavedLang();
 }
 
 class LangLocalDataSourceImpl implements LangLocalDataSource {
@@ -14,8 +14,8 @@ class LangLocalDataSourceImpl implements LangLocalDataSource {
   Future<bool> changeLang({required String langCode}) async =>
       await sharedPreferences.setString(AppStrings.locale, langCode);
   @override
-  Future<String?> getSavedLang() async =>
-      await sharedPreferences.containsKey(AppStrings.locale)? 
-      sharedPreferences.getString(AppStrings.locale) : 'en';
+  Future<String> getSavedLang() async =>
+      sharedPreferences.containsKey(AppStrings.locale)? 
+      sharedPreferences.getString(AppStrings.locale)! : AppStrings.englishCode;
   
 }

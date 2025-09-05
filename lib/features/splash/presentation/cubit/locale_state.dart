@@ -5,7 +5,7 @@ sealed class LocaleState extends Equatable {
   const LocaleState(this.locale);
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [locale];
 }
 
 class ChangeLocaleState extends LocaleState {
